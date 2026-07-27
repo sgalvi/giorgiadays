@@ -12,6 +12,80 @@
 </head>
 
 <body>
+
+  <!-- ── Selettore utente ── -->
+  <div id="user-modal" class="user-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="user-modal-box">
+      <p class="user-modal-label" id="modal-title">Chi sei?</p>
+      <div class="user-modal-buttons">
+        <button class="user-btn" data-user="Simone" id="btn-simone">👦 Simone</button>
+        <button class="user-btn" data-user="Giorgia" id="btn-giorgia">👧 Giorgia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modal Creazione Card ── -->
+  <div id="card-modal" class="user-modal hidden" role="dialog" aria-modal="true" aria-labelledby="card-modal-title">
+    <div class="user-modal-box card-modal-box">
+      <p class="user-modal-label" id="card-modal-title">Nuova idea ✨</p>
+      
+      <form id="card-form" class="card-form">
+        <div class="form-group">
+          <label for="form-title">Titolo dell'idea</label>
+          <input type="text" id="form-title" placeholder="Es. Pomeriggio alle terme 🧖‍♀️" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="form-intro">Breve descrizione</label>
+          <input type="text" id="form-intro" placeholder="Es. Un paio d'ore di relax solo per noi" required />
+        </div>
+
+        <div class="form-group">
+          <label for="form-theme">Colore / Stile</label>
+          <select id="form-theme">
+            <option value="shopping">🌸 Rosa / Lilla (Shopping)</option>
+            <option value="river">🌿 Verde Acqua (Fiume)</option>
+            <option value="grill">🔥 Arancione (Brace)</option>
+            <option value="sea">🌊 Blu (Mare)</option>
+            <option value="tent">⛺ Verde Scuro (Tenda)</option>
+            <option value="bike">🚲 Giallo (Bici)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="form-program">Programma (una riga per ogni punto)</label>
+          <textarea id="form-program" rows="3" placeholder="Es:&#10;Partenza alle 14&#10;Bagno termale e idromassaggio&#10;Tisana finale relax" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="form-note">Ricorda / Note (opzionale)</label>
+          <input type="text" id="form-note" placeholder="Es. Portare ciabatte e accappatoio" />
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="form-map-name">Nome Luogo Maps (opzionale)</label>
+            <input type="text" id="form-map-name" placeholder="Es. Terme di Arta" />
+          </div>
+          <div class="form-group">
+            <label for="form-map-url">Link Google Maps (opzionale)</label>
+            <input type="url" id="form-map-url" placeholder="https://google.com/maps/..." />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-food">Cibo & cose da portare (una riga per punto, opzionale)</label>
+          <textarea id="form-food" rows="2" placeholder="Es:&#10;Ciabatte e cuffia&#10;Costume di ricambio"></textarea>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="user-btn btn--cancel" id="btn-card-cancel">Annulla</button>
+          <button type="submit" class="user-btn">Crea idea 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <main class="app">
     <header class="topbar">
       <p class="eyebrow">Quando siamo entrambi liberi</p>
@@ -32,21 +106,40 @@
               <li>Giro libero per i negozi, con pranzo veloce quando ci va (consiglio piadineria).</li>
               <li>Nel pomeriggio, trasferimento a Conegliano con giretto per il paese prima del film.</li>
               <li>Prendere snack e bibite in supermercato perché siamo poveri.</li>
-              <li>Gran finale al <strong>Cinergia di Conegliano</strong> per vedere <em>Odissea</em> di Nolan proiettato in 70 mm.</li>
+              <li>Gran finale al <strong>Cinergia di Conegliano</strong> per vedere <em>Odissea</em> di Nolan proiettato
+                in 70 mm.</li>
             </ul>
           </div>
 
-          <p class="note"><strong>Da ricordare:</strong> prendere prima i biglietti. Sono difficili da prendere, dobbiamo quindi organizzarci in anticipo.</p>
+          <p class="note"><strong>Da ricordare:</strong> prendere prima i biglietti. Sono difficili da prendere,
+            dobbiamo quindi organizzarci in anticipo.</p>
 
           <div class="section">
             <p class="section-title">📍 Google Maps</p>
             <div class="map-list">
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Noventa+di+Piave+Designer+Outlet+Via+Marco+Polo+1" target="_blank" rel="noopener noreferrer">
+              <a class="map-link"
+                href="https://www.google.com/maps/search/?api=1&query=Noventa+di+Piave+Designer+Outlet+Via+Marco+Polo+1"
+                target="_blank" rel="noopener noreferrer">
                 <span>Noventa di Piave Designer Outlet</span><span>↗</span>
               </a>
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cinergia+Conegliano" target="_blank" rel="noopener noreferrer">
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cinergia+Conegliano"
+                target="_blank" rel="noopener noreferrer">
                 <span>Cinergia Conegliano</span><span>↗</span>
               </a>
+            </div>
+          </div>
+
+          <div class="section rating-section" data-card="shopping">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="shopping" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="shopping" data-user="Giorgia"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -60,22 +153,29 @@
           <div class="section">
             <p class="section-title">Il programma</p>
             <ul>
-              <li>Arrivo in mattinata a <strong>Cerdevol Curnila</strong> e ricerca di uno spazio tranquillo vicino al torrente.</li>
-              <li>Picnic sulle rocce, sole, relax e bagno nell'Arzino. Pane e salame o un buon riso freddo / insalata mediterranea tipo quella che avevo fatto a casa con le patate dolci.</li>
+              <li>Arrivo in mattinata a <strong>Cerdevol Curnila</strong> e ricerca di uno spazio tranquillo vicino al
+                torrente.</li>
+              <li>Picnic sulle rocce, sole, relax e bagno nell'Arzino. Pane e salame o un buon riso freddo / insalata
+                mediterranea tipo quella che avevo fatto a casa con le patate dolci.</li>
               <li>Esplorazione dei dintorni senza programmi troppo rigidi.</li>
               <li>Opzione avventura: breve passeggiata verso le <strong>Cascate dell'Arzino</strong>.</li>
               <li>Opzione tranquilla: merenda panoramica e rientro attraversando i piccoli paesi della valle.</li>
             </ul>
           </div>
 
-          <p class="note">Cerdevol Curnila si trova in Val d'Arzino, tra Pielungo e San Francesco; nella zona sono presenti sentieri, pozze naturali e cascate.</p>
-          <p class="note"><strong>Da ricordare:</strong> scarpe adatte alle rocce, telo, crema solare, acqua e pranzo al sacco, acqua frizzante e vino per spritzare. Prima del bagno controllare sempre corrente, livello dell'acqua e condizioni meteorologiche. Carte da briscola e scacchiera.</p>
+          <p class="note">Cerdevol Curnila si trova in Val d'Arzino, tra Pielungo e San Francesco; nella zona sono
+            presenti sentieri, pozze naturali e cascate.</p>
+          <p class="note"><strong>Da ricordare:</strong> scarpe adatte alle rocce, telo, crema solare, acqua e pranzo al
+            sacco, acqua frizzante e vino per spritzare. Prima del bagno controllare sempre corrente, livello dell'acqua
+            e condizioni meteorologiche. Carte da briscola e scacchiera.</p>
 
           <div class="section">
             <p class="section-title">📍 Google Maps</p>
             <div class="map-list">
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cerdevol+Curnila" target="_blank" rel="noopener noreferrer"><span>Cerdevol Curnila</span><span>↗</span></a>
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cascate+dell%27Arzino+Pozzis" target="_blank" rel="noopener noreferrer"><span>Cascate dell'Arzino, Pozzis</span><span>↗</span></a>
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cerdevol+Curnila"
+                target="_blank" rel="noopener noreferrer"><span>Cerdevol Curnila</span><span>↗</span></a>
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cascate+dell%27Arzino+Pozzis"
+                target="_blank" rel="noopener noreferrer"><span>Cascate dell'Arzino, Pozzis</span><span>↗</span></a>
             </div>
           </div>
 
@@ -85,6 +185,20 @@
               <li>Picnic preparato da noi.</li>
               <li>Eventuale malga o agriturismo.</li>
             </ul>
+          </div>
+
+          <div class="section rating-section" data-card="river">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="river" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="river" data-user="Giorgia"></div>
+              </div>
+            </div>
           </div>
         </div>
       </article>
@@ -110,8 +224,12 @@
           <div class="section">
             <p class="section-title">📍 Google Maps</p>
             <div class="map-list">
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Parco+Piuma+Area+Remuda+Gorizia" target="_blank" rel="noopener noreferrer"><span>Parco Piuma – Area Remuda, Gorizia</span><span>↗</span></a>
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Gregor%C4%8Di%C4%8Deva+ulica+2+5210+Deskle+Slovenia" target="_blank" rel="noopener noreferrer"><span>Mini Bridge – Deskle, Slovenia</span><span>↗</span></a>
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Parco+Piuma+Area+Remuda+Gorizia"
+                target="_blank" rel="noopener noreferrer"><span>Parco Piuma – Area Remuda,
+                  Gorizia</span><span>↗</span></a>
+              <a class="map-link"
+                href="https://www.google.com/maps/search/?api=1&query=Gregor%C4%8Di%C4%8Deva+ulica+2+5210+Deskle+Slovenia"
+                target="_blank" rel="noopener noreferrer"><span>Mini Bridge – Deskle, Slovenia</span><span>↗</span></a>
             </div>
           </div>
 
@@ -121,6 +239,20 @@
               <li>Grigliata: civa, cosce disossate, salsicce e verdure da fare in griglia + dolcetto.</li>
               <li>Asciugamani per stenderci, amaca per riposare in Parco Piuma.</li>
             </ul>
+          </div>
+
+          <div class="section rating-section" data-card="grill">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="grill" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="grill" data-user="Giorgia"></div>
+              </div>
+            </div>
           </div>
         </div>
       </article>
@@ -144,7 +276,8 @@
           <div class="section">
             <p class="section-title">📍 Google Maps</p>
             <div class="map-list">
-              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+del+Faro+Bibione" target="_blank" rel="noopener noreferrer"><span>Spiaggia del Faro di Bibione</span><span>↗</span></a>
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+del+Faro+Bibione"
+                target="_blank" rel="noopener noreferrer"><span>Spiaggia del Faro di Bibione</span><span>↗</span></a>
             </div>
           </div>
 
@@ -154,6 +287,20 @@
               <li>Pranzo leggero in spiaggia.</li>
               <li>Cena alla Croce del Sud.</li>
             </ul>
+          </div>
+
+          <div class="section rating-section" data-card="sea">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="sea" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="sea" data-user="Giorgia"></div>
+              </div>
+            </div>
           </div>
         </div>
       </article>
@@ -191,6 +338,20 @@
               <li>Colazione per il mattino seguente.</li>
             </ul>
           </div>
+
+          <div class="section rating-section" data-card="tent">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="tent" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="tent" data-user="Giorgia"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -209,6 +370,31 @@
               <li>Missione da completare entro agosto, prima delle analisi del sangue per la patente.</li>
             </ul>
           </div>
+
+          <div class="section rating-section" data-card="bike">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="bike" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="bike" data-user="Giorgia"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Trigger Creazione Card ── -->
+      <article class="card card--add" id="card-add-trigger" role="button" aria-label="Aggiungi una nuova idea">
+        <div class="card-inner">
+          <div class="add-card-content">
+            <span class="plus-icon">＋</span>
+            <h3>Aggiungi un'idea</h3>
+            <p>Crea una nuova giornata da fare insieme</p>
+          </div>
         </div>
       </article>
 
@@ -218,6 +404,451 @@
   <!-- Twemoji: emoji illustrate/disegnate -->
   <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
   <script>twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });</script>
+  <script>
+    /* ── Configuration ── */
+    const FIREBASE_URL = "https://giorgiadays-default-rtdb.europe-west1.firebasedatabase.app/";
+
+    /* ── User selection ── */
+    const USERS = ['Simone', 'Giorgia'];
+    const modal = document.getElementById('user-modal');
+
+    function getCurrentUser() {
+      return localStorage.getItem('currentUser');
+    }
+
+    function setCurrentUser(user) {
+      localStorage.setItem('currentUser', user);
+      modal.classList.add('hidden');
+      renderAllCards(); // Re-render per abilitare/disabilitare le stelle dell'utente
+      updateUserIndicator(user);
+    }
+
+    document.querySelectorAll('.user-btn').forEach(btn => {
+      btn.addEventListener('click', () => setCurrentUser(btn.dataset.user));
+    });
+
+    /* ── Rating logic ── */
+    function getRating(card, user) {
+      return parseInt(localStorage.getItem(`rating_${card}_${user}`) || '0', 10);
+    }
+
+    function setLocalRating(card, user, value) {
+      localStorage.setItem(`rating_${card}_${user}`, value);
+    }
+
+    async function syncRatingToCloud(card, user, value) {
+      if (!isFirebaseConfigured()) return;
+      try {
+        const url = `${normalizeFirebaseUrl(FIREBASE_URL)}/ratings/${card}/${user}.json`;
+        await fetch(url, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(value)
+        });
+      } catch (err) {
+        console.warn("Errore durante il salvataggio del voto nel cloud.", err);
+      }
+    }
+
+    function buildStars(container) {
+      const card = container.dataset.card;
+      const user = container.dataset.user;
+      const currentUser = getCurrentUser();
+      const value = getRating(card, user);
+      const interactive = (user === currentUser);
+
+      container.innerHTML = '';
+      container.setAttribute('aria-label', `Valutazione di ${user}: ${value} stelle su 5`);
+
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('button');
+        star.className = 'star' + (i <= value ? ' star--on' : '');
+        star.setAttribute('aria-label', `${i} stella${i > 1 ? 'e' : ''}`);
+        star.textContent = '★';
+
+        if (interactive) {
+          star.addEventListener('mouseenter', () => previewStars(container, i));
+          star.addEventListener('mouseleave', () => buildStars(container));
+          star.addEventListener('click', async () => {
+            const newVal = (i === getRating(card, user)) ? 0 : i;
+            setLocalRating(card, user, newVal);
+            buildStars(container);
+            await syncRatingToCloud(card, user, newVal);
+          });
+        } else {
+          star.disabled = true;
+          star.setAttribute('tabindex', '-1');
+        }
+
+        container.appendChild(star);
+      }
+    }
+
+    function previewStars(container, hoverIndex) {
+      container.querySelectorAll('.star').forEach((s, idx) => {
+        s.classList.toggle('star--on', idx < hoverIndex);
+        s.classList.toggle('star--hover', idx < hoverIndex);
+      });
+    }
+
+    function renderAllStars() {
+      document.querySelectorAll('.stars').forEach(buildStars);
+    }
+
+    /* ── User indicator (top-right chip) ── */
+    function updateUserIndicator(user) {
+      let chip = document.getElementById('user-chip');
+      if (!chip) {
+        chip = document.createElement('button');
+        chip.id = 'user-chip';
+        chip.title = 'Cambia utente';
+        chip.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+        });
+        document.querySelector('.topbar').appendChild(chip);
+      }
+      chip.textContent = (user === 'Simone') ? '👦 Simone' : '👧 Giorgia';
+    }
+
+    /* ── Custom Cards Logic ── */
+    const cardModal = document.getElementById('card-modal');
+    const cardForm = document.getElementById('card-form');
+    const cardAddTrigger = document.getElementById('card-add-trigger');
+    const btnCardCancel = document.getElementById('btn-card-cancel');
+
+    // Mostra/Nascondi modal creazione card
+    cardAddTrigger.addEventListener('click', () => {
+      cardForm.reset();
+      cardModal.classList.remove('hidden');
+    });
+
+    btnCardCancel.addEventListener('click', () => {
+      cardModal.classList.add('hidden');
+    });
+
+    // Submit della nuova card
+    cardForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const title = document.getElementById('form-title').value.trim();
+      const intro = document.getElementById('form-intro').value.trim();
+      const theme = document.getElementById('form-theme').value;
+      const programRaw = document.getElementById('form-program').value;
+      const note = document.getElementById('form-note').value.trim();
+      const mapName = document.getElementById('form-map-name').value.trim();
+      const mapUrl = document.getElementById('form-map-url').value.trim();
+      const foodRaw = document.getElementById('form-food').value;
+
+      const program = programRaw.split('\n').map(l => l.trim()).filter(l => l !== '');
+      const food = foodRaw.split('\n').map(l => l.trim()).filter(l => l !== '');
+      
+      const maps = [];
+      if (mapName && mapUrl) {
+        maps.push({ name: mapName, url: mapUrl });
+      }
+
+      const cardId = 'custom_' + Date.now();
+      const cardData = { title, intro, theme, program, note, maps, food };
+
+      // Salvataggio locale
+      saveLocalCustomCard(cardId, cardData);
+      renderAllCards();
+      cardModal.classList.add('hidden');
+
+      // Salvataggio cloud
+      if (isFirebaseConfigured()) {
+        try {
+          const url = `${normalizeFirebaseUrl(FIREBASE_URL)}/custom_cards/${cardId}.json`;
+          await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cardData)
+          });
+        } catch (err) {
+          console.error("Errore durante il salvataggio della card sul cloud.", err);
+        }
+      }
+    });
+
+    function getLocalCustomCards() {
+      try {
+        return JSON.parse(localStorage.getItem('custom_cards') || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveLocalCustomCard(id, data) {
+      const cards = getLocalCustomCards();
+      cards[id] = data;
+      localStorage.setItem('custom_cards', JSON.stringify(cards));
+    }
+
+    function saveAllLocalCustomCards(cards) {
+      localStorage.setItem('custom_cards', JSON.stringify(cards));
+    }
+
+    function deleteLocalCustomCard(id) {
+      const cards = getLocalCustomCards();
+      delete cards[id];
+      localStorage.setItem('custom_cards', JSON.stringify(cards));
+    }
+
+    // Costruisce e renderizza le card personalizzate nel DOM
+    function renderAllCards() {
+      // Rimuovi prima tutte le vecchie card custom dal DOM
+      document.querySelectorAll('.custom-card').forEach(el => el.remove());
+      
+      const cardsData = getLocalCustomCards();
+      const grid = document.querySelector('.cards-grid');
+      
+      for (const id in cardsData) {
+        const cardElement = createCardElement(id, cardsData[id]);
+        grid.insertBefore(cardElement, cardAddTrigger);
+      }
+      
+      // Twemoji parsing per le nuove card
+      if (window.twemoji) {
+        twemoji.parse(grid, { folder: 'svg', ext: '.svg' });
+      }
+      
+      renderAllStars();
+    }
+
+    function createCardElement(id, cardData) {
+      const article = document.createElement('article');
+      article.className = `card card--${cardData.theme || 'shopping'} custom-card`;
+      article.id = `card-${id}`;
+      
+      let sectionsHtml = '';
+      
+      // Programma
+      if (cardData.program && cardData.program.length > 0) {
+        sectionsHtml += `
+          <div class="section">
+            <p class="section-title">Il programma</p>
+            <ul>
+              ${cardData.program.map(step => `<li>${step}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+      
+      // Nota
+      if (cardData.note && cardData.note.trim() !== '') {
+        sectionsHtml += `<p class="note">${cardData.note}</p>`;
+      }
+      
+      // Google Maps
+      if (cardData.maps && cardData.maps.length > 0) {
+        sectionsHtml += `
+          <div class="section">
+            <p class="section-title">📍 Google Maps</p>
+            <div class="map-list">
+              ${cardData.maps.map(map => `
+                <a class="map-link" href="${map.url}" target="_blank" rel="noopener noreferrer">
+                  <span>${map.name}</span><span>↗</span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+      
+      // Cibo
+      if (cardData.food && cardData.food.length > 0) {
+        sectionsHtml += `
+          <div class="section">
+            <p class="section-title">🍴 Cibo &amp; cose da portare</p>
+            <ul>
+              ${cardData.food.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      // Bottone elimina
+      const deleteBtnHtml = `<button class="delete-card-btn" data-id="${id}" title="Elimina idea">🗑️</button>`;
+
+      article.innerHTML = `
+        <div class="card-inner">
+          ${deleteBtnHtml}
+          <h2>${cardData.title}</h2>
+          <p class="intro">${cardData.intro}</p>
+          ${sectionsHtml}
+          <div class="section rating-section" data-card="${id}">
+            <p class="section-title">⭐ Valutazione</p>
+            <div class="rating-rows">
+              <div class="rating-row">
+                <span class="rating-name">Simone</span>
+                <div class="stars" data-card="${id}" data-user="Simone"></div>
+              </div>
+              <div class="rating-row">
+                <span class="rating-name">Giorgia</span>
+                <div class="stars" data-card="${id}" data-user="Giorgia"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      article.querySelector('.delete-card-btn').addEventListener('click', () => {
+        if (confirm(`Sei sicuro di voler eliminare "${cardData.title}"?`)) {
+          deleteCustomCard(id);
+        }
+      });
+      
+      return article;
+    }
+
+    async function deleteCustomCard(id) {
+      deleteLocalCustomCard(id);
+      renderAllCards();
+      
+      // Rimuovi voti locali
+      localStorage.removeItem(`rating_${id}_Simone`);
+      localStorage.removeItem(`rating_${id}_Giorgia`);
+      
+      if (isFirebaseConfigured()) {
+        try {
+          await fetch(`${normalizeFirebaseUrl(FIREBASE_URL)}/custom_cards/${id}.json`, { method: 'DELETE' });
+          await fetch(`${normalizeFirebaseUrl(FIREBASE_URL)}/ratings/${id}.json`, { method: 'DELETE' });
+        } catch (err) {
+          console.error("Errore durante la cancellazione dal cloud.", err);
+        }
+      }
+    }
+
+    /* ── Real-time Sync Logic (Firebase) ── */
+    function isFirebaseConfigured() {
+      return FIREBASE_URL && FIREBASE_URL.trim() !== "" && !FIREBASE_URL.includes("INSERISCI");
+    }
+
+    function normalizeFirebaseUrl(url) {
+      let clean = url.trim();
+      if (clean.endsWith('/')) {
+        clean = clean.slice(0, -1);
+      }
+      return clean;
+    }
+
+    async function loadInitialData() {
+      if (!isFirebaseConfigured()) return;
+      try {
+        const response = await fetch(`${normalizeFirebaseUrl(FIREBASE_URL)}/.json`);
+        const data = await response.json();
+        if (data) {
+          if (data.ratings) {
+            applyRatingsData(data.ratings);
+          }
+          if (data.custom_cards) {
+            saveAllLocalCustomCards(data.custom_cards);
+            renderAllCards();
+          }
+        }
+      } catch (err) {
+        console.warn("Impossibile caricare i dati dal cloud, uso la cache locale.", err);
+      }
+    }
+
+    function applyRatingsData(ratings) {
+      let changed = false;
+      for (const card in ratings) {
+        for (const user in ratings[card]) {
+          const cloudVal = parseInt(ratings[card][user], 10);
+          if (getRating(card, user) !== cloudVal) {
+            setLocalRating(card, user, cloudVal);
+            changed = true;
+          }
+        }
+      }
+      if (changed) {
+        renderAllStars();
+      }
+    }
+
+    function startRealtimeSync() {
+      if (!isFirebaseConfigured()) return;
+
+      const url = `${normalizeFirebaseUrl(FIREBASE_URL)}/.json`;
+      const eventSource = new EventSource(url);
+
+      eventSource.addEventListener('put', (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+          if (payload && payload.path === "/") {
+            if (payload.data) {
+              if (payload.data.ratings) applyRatingsData(payload.data.ratings);
+              if (payload.data.custom_cards) {
+                saveAllLocalCustomCards(payload.data.custom_cards);
+              } else {
+                saveAllLocalCustomCards({});
+              }
+              renderAllCards();
+            }
+          } else if (payload && payload.path) {
+            const parts = payload.path.split('/');
+            
+            // Gestione dei Voti (/ratings/...)
+            if (parts[1] === 'ratings') {
+              if (parts.length >= 4) {
+                const card = parts[2];
+                const user = parts[3];
+                const value = parseInt(payload.data, 10) || 0;
+                if (getRating(card, user) !== value) {
+                  setLocalRating(card, user, value);
+                  renderAllStars();
+                }
+              } else if (parts.length === 2 && payload.data) {
+                applyRatingsData(payload.data);
+              }
+            }
+            
+            // Gestione delle Card Personalizzate (/custom_cards/...)
+            else if (parts[1] === 'custom_cards') {
+              if (parts.length === 3) {
+                const cardId = parts[2];
+                if (payload.data === null) {
+                  deleteLocalCustomCard(cardId);
+                  localStorage.removeItem(`rating_${cardId}_Simone`);
+                  localStorage.removeItem(`rating_${cardId}_Giorgia`);
+                } else {
+                  saveLocalCustomCard(cardId, payload.data);
+                }
+                renderAllCards();
+              } else if (parts.length === 2) {
+                saveAllLocalCustomCards(payload.data || {});
+                renderAllCards();
+              }
+            }
+          }
+        } catch (err) {
+          console.error("Errore nel parsing dei dati in tempo reale:", err);
+        }
+      });
+
+      eventSource.onerror = (err) => {
+        console.warn("Connessione di sincronizzazione persa. Riconnessione automatica...", err);
+      };
+    }
+
+    /* ── Init ── */
+    (async () => {
+      const savedUser = getCurrentUser();
+      if (savedUser) {
+        modal.classList.add('hidden');
+        updateUserIndicator(savedUser);
+      }
+      
+      // Render iniziale delle card custom locali
+      renderAllCards();
+
+      if (isFirebaseConfigured()) {
+        await loadInitialData();
+        startRealtimeSync();
+      }
+    })();
+  </script>
 </body>
 
 </html>

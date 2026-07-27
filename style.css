@@ -329,3 +329,368 @@ img.emoji {
     animation: none !important;
   }
 }
+
+/* ── User modal ── */
+
+.user-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(80, 50, 80, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.user-modal.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.user-modal-box {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255,255,255,0.95);
+  border-radius: 32px;
+  padding: 44px 48px 40px;
+  text-align: center;
+  box-shadow:
+    0 20px 60px rgba(80, 50, 80, 0.18),
+    0 4px 16px rgba(80, 50, 80, 0.10);
+  animation: slideUp 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.user-modal-label {
+  margin: 0 0 28px;
+  font-family: 'Caveat', cursive;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #6e5080;
+  letter-spacing: -0.01em;
+}
+
+.user-modal-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.user-btn {
+  cursor: pointer;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(135deg, #c97ecb 0%, #9060a8 100%);
+  box-shadow:
+    0 4px 14px rgba(120, 60, 160, 0.30),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.user-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 22px rgba(120, 60, 160, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.30);
+}
+
+.user-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── User chip (topbar) ── */
+
+#user-chip {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.60);
+  border: 1.5px solid rgba(255,255,255,0.90);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #6e5080;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(80,50,80,0.10);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#user-chip:hover {
+  background: rgba(255,255,255,0.88);
+  transform: translateY(-2px);
+}
+
+/* ── Rating section ── */
+
+.rating-section {
+  margin-top: 20px;
+}
+
+.rating-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rating-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: rgba(40, 20, 50, 0.75);
+  min-width: 60px;
+}
+
+/* ── Stars ── */
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 1.55rem;
+  line-height: 1;
+  color: rgba(0,0,0,0.12);
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.star--on {
+  color: #f0b340;
+  text-shadow: 0 1px 4px rgba(220, 140, 20, 0.35);
+}
+
+.star--hover {
+  color: #f5c85a;
+  transform: scale(1.18);
+}
+
+.star:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.star:not(:disabled):hover {
+  transform: scale(1.18);
+}
+
+/* ── Add Card trigger ── */
+
+.card--add {
+  background: rgba(255, 255, 255, 0.32) !important;
+  border: 3px dashed rgba(110, 80, 128, 0.30);
+  cursor: pointer;
+  min-height: 280px;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card--add::before,
+.card--add::after {
+  display: none !important; /* No blobs for add card */
+}
+
+.card--add:hover {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(110, 80, 128, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(80, 50, 80, 0.08) !important;
+}
+
+.card--add:active {
+  transform: scale(0.98);
+}
+
+.add-card-content {
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.plus-icon {
+  font-size: 3.5rem;
+  color: #6e5080;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.card--add:hover .plus-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.card--add h3 {
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  color: #6e5080;
+}
+
+.card--add p {
+  margin: 0;
+  font-size: 0.90rem;
+  color: #7e6e7e;
+  font-weight: 700;
+  max-width: 25ch;
+  line-height: 1.4;
+}
+
+/* ── Form & Modal Customization ── */
+
+.card-modal-box {
+  width: min(100%, 540px) !important;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px 32px 30px !important;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .form-group-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-form label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7e6e7e;
+}
+
+.card-form input,
+.card-form select,
+.card-form textarea {
+  padding: 11px 14px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(110, 80, 128, 0.20);
+  background: rgba(255, 255, 255, 0.70);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card-form input:focus,
+.card-form select:focus,
+.card-form textarea:focus {
+  outline: none;
+  border-color: #9060a8;
+  box-shadow: 0 0 0 3px rgba(144, 96, 168, 0.15);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn--cancel {
+  background: rgba(80, 50, 80, 0.08) !important;
+  color: #6e5080 !important;
+  box-shadow: none !important;
+}
+
+.btn--cancel:hover {
+  background: rgba(80, 50, 80, 0.14) !important;
+}
+
+/* ── Delete Card Button ── */
+
+.delete-card-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.40);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+  z-index: 10;
+}
+
+.card:hover .delete-card-btn {
+  opacity: 1;
+}
+
+.delete-card-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.1);
+}
+
+/* Support for touch screens where hover isn't possible */
+@media (hover: none) {
+  .delete-card-btn {
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.60);
+  }
+}
+
