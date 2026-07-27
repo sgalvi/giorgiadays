@@ -271,9 +271,10 @@
       const nextButton = document.getElementById('nextButton');
 
       let currentIndex = 0;
-      let startX = 0;
+      let startX = 0, startY = 0;
       let currentX = 0;
       let isDragging = false;
+      let isDirectionLocked = false;
       let pointerId = null;
 
       slides.forEach((_, index) => {
@@ -292,7 +293,7 @@
       }
 
       function updateUI(animate = true) {
-        track.classList.toggle('dragging', !animate);
+        track.style.transition = animate ? 'transform 0.3s ease-out' : 'none';
         track.style.transform = `translate3d(${-currentIndex * 100}%, 0, 0)`;
         counter.textContent = `${currentIndex + 1} / ${slides.length}`;
 
@@ -321,42 +322,52 @@
         if (event.target.closest('a, button')) return;
 
         isDragging = true;
+        isDirectionLocked = false;
         pointerId = event.pointerId;
         startX = event.clientX;
+        startY = event.clientY;
         currentX = startX;
-        track.classList.add('dragging');
-        deck.setPointerCapture?.(pointerId);
+        track.style.transition = 'none';
+        deck.setPointerCapture(pointerId);
       }
 
       function onPointerMove(event) {
         if (!isDragging || event.pointerId !== pointerId) return;
 
-        currentX = event.clientX;
-        const deltaX = currentX - startX;
-        const width = deck.clientWidth || 1;
-        const resistance =
-          (currentIndex === 0 && deltaX > 0) ||
-            (currentIndex === slides.length - 1 && deltaX < 0)
-            ? 0.28
-            : 1;
+        const deltaX = event.clientX - startX;
+        const deltaY = event.clientY - startY;
 
-        const offsetPercent = (deltaX / width) * 100 * resistance;
-        track.style.transform = `translate3d(${(-currentIndex * 100) + offsetPercent}%, 0, 0)`;
+        if (!isDirectionLocked) {
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+            isDirectionLocked = true;
+          } else if (Math.abs(deltaY) > 5) {
+            isDragging = false;
+            return;
+          }
+        }
+
+        if (isDirectionLocked) {
+          event.preventDefault();
+          currentX = event.clientX;
+          const width = deck.clientWidth || 1;
+          const resistance = (currentIndex === 0 && deltaX > 0) || (currentIndex === slides.length - 1 && deltaX < 0) ? 0.2 : 1;
+          const offsetPercent = (deltaX / width) * 100 * resistance;
+          track.style.transform = `translate3d(${(-currentIndex * 100) + offsetPercent}%, 0, 0)`;
+        }
       }
 
       function finishPointer(event) {
         if (!isDragging || event.pointerId !== pointerId) return;
-
+        
         isDragging = false;
         const deltaX = currentX - startX;
-        const threshold = Math.min(90, deck.clientWidth * 0.2);
+        const threshold = deck.clientWidth * 0.15;
 
         if (Math.abs(deltaX) > threshold) {
           moveBy(deltaX < 0 ? 1 : -1);
         } else {
           updateUI(true);
         }
-
         pointerId = null;
       }
 
