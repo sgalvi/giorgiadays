@@ -24,14 +24,7 @@ body {
     var(--bg);
   color: var(--text);
   font-family: Inter, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, -apple-system, sans-serif;
-  overscroll-behavior: none;
-}
-
-body {
-  min-height: 100dvh;
-  display: flex;
-  justify-content: center;
-  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 button,
@@ -39,28 +32,28 @@ a {
   font: inherit;
 }
 
+/* ── Layout ── */
+
 .app {
-  width: min(100%, 520px);
-  min-height: 100dvh;
+  width: min(100%, 1100px);
+  margin: 0 auto;
   padding:
-    max(18px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-top))
     16px
-    max(20px, env(safe-area-inset-bottom));
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 14px;
+    max(32px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
+/* ── Header ── */
+
 .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
   padding: 4px 4px 0;
 }
 
 .eyebrow {
-  margin: 0 0 3px;
+  margin: 0 0 6px;
   color: rgba(255, 255, 255, 0.64);
   font-size: 0.73rem;
   font-weight: 800;
@@ -70,59 +63,44 @@ a {
 
 h1 {
   margin: 0;
-  font-size: clamp(1.45rem, 6vw, 2rem);
+  font-size: clamp(1.6rem, 7vw, 2.4rem);
   line-height: 1.06;
   letter-spacing: -0.04em;
 }
 
-.counter {
-  flex: 0 0 auto;
-  min-width: 58px;
-  padding: 9px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.83);
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-align: center;
-  backdrop-filter: blur(16px);
+/* ── Grid ── */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
-.deck {
-  position: relative;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  touch-action: none;
-  user-select: none;
+@media (min-width: 700px) {
+  .app {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
 }
 
-.track {
-  height: 100%;
-  display: flex;
-  transition: transform 440ms cubic-bezier(0.22, 0.72, 0.22, 1);
-  will-change: transform;
+@media (min-width: 1060px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.track.dragging {
-  transition: none;
-}
-
-.slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  height: 100%;
-  padding: 2px;
-}
+/* ── Card ── */
 
 .card {
   --accent: #ff91be;
   --accent-2: #8247ff;
   position: relative;
-  height: 100%;
-  min-height: 590px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: var(--radius);
@@ -141,6 +119,7 @@ h1 {
   border-radius: 999px;
   filter: blur(2px);
   opacity: 0.42;
+  pointer-events: none;
 }
 
 .card::before {
@@ -160,39 +139,17 @@ h1 {
 }
 
 .card-inner {
-  height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: none;
   padding: 28px 24px 34px;
 }
 
-.card-inner::-webkit-scrollbar {
-  display: none;
-}
-
-.card-number {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: rgba(23, 20, 38, 0.18);
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  backdrop-filter: blur(12px);
-}
+/* ── Typography inside card ── */
 
 .card h2 {
-  margin: 18px 0 8px;
+  margin: 0 0 8px;
   max-width: 95%;
-  font-size: clamp(2rem, 8.8vw, 3.05rem);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  line-height: 1.0;
+  letter-spacing: -0.05em;
   text-wrap: balance;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
@@ -207,7 +164,7 @@ h1 {
 }
 
 .section {
-  margin-top: 18px;
+  margin-top: 16px;
   padding: 17px 17px 15px;
   border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: 22px;
@@ -259,7 +216,7 @@ li::before {
 }
 
 .note {
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   padding: 15px 16px;
   border-left: 4px solid rgba(255, 255, 255, 0.72);
   border-radius: 5px 18px 18px 5px;
@@ -300,94 +257,27 @@ li::before {
   font-size: 1.1rem;
 }
 
-.controls {
-  display: grid;
-  grid-template-columns: 48px 1fr 48px;
-  align-items: center;
-  gap: 12px;
-  min-height: 52px;
-}
-
-.nav-button {
-  width: 48px;
-  height: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 1.35rem;
-  cursor: pointer;
-  backdrop-filter: blur(14px);
-}
-
-.nav-button:active {
-  transform: scale(0.94);
-}
-
-.dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.3);
-  transition: width 220ms ease, background 220ms ease, transform 220ms ease;
-  cursor: pointer;
-}
-
-.dot.active {
-  width: 25px;
-  background: rgba(255, 255, 255, 0.94);
-}
-
-.swipe-hint {
-  grid-column: 1 / -1;
-  margin-top: -4px;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.71rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-align: center;
-}
+/* ── Card color themes ── */
 
 .card--shopping { --accent: #f06aa9; --accent-2: #6545d9; }
-.card--river { --accent: #17b9b0; --accent-2: #0b6d9e; }
-.card--grill { --accent: #ff894f; --accent-2: #c02d5b; }
-.card--sea { --accent: #29b9f0; --accent-2: #3d57c9; }
-.card--tent { --accent: #7cb342; --accent-2: #215a49; }
-.card--bike { --accent: #e0a62f; --accent-2: #b64c34; }
+.card--river    { --accent: #17b9b0; --accent-2: #0b6d9e; }
+.card--grill    { --accent: #ff894f; --accent-2: #c02d5b; }
+.card--sea      { --accent: #29b9f0; --accent-2: #3d57c9; }
+.card--tent     { --accent: #7cb342; --accent-2: #215a49; }
+.card--bike     { --accent: #e0a62f; --accent-2: #b64c34; }
+
+/* ── Desktop card padding ── */
 
 @media (min-width: 700px) {
-  .app {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
   .card-inner {
-    padding: 34px 30px 40px;
+    padding: 30px 28px 36px;
   }
 }
 
-@media (max-height: 720px) {
-  .card {
-    min-height: 515px;
-  }
-
-  .card h2 {
-    font-size: 2rem;
-  }
-}
+/* ── Reduced motion ── */
 
 @media (prefers-reduced-motion: reduce) {
-  .track,
-  .dot {
-    transition: none;
+  * {
+    transition: none !important;
   }
 }
